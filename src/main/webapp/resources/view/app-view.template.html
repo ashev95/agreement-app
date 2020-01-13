@@ -1,0 +1,25 @@
+<div layout="column" layout-fill>
+
+	<div>
+	
+		<md-button class="md-raised menubar-button" ng-click="createAgreement()">
+			Создать договор
+		</md-button>
+		<md-button class="md-raised menubar-button" ng-click="openAgreement()">
+			Открыть договор
+		</md-button>
+
+	</div>
+	<div>
+		<table class="table">
+			<tr class="table-tr-head">
+				<td ng-repeat="col in table.head" ng-if="col.code != 'id'">
+					{{col.title}}
+				</td>
+			</tr>
+			<tr id="row{{$index}}" class="table-tr-data" ng-repeat="row in table.data" ng-click="selectRow($index)">
+				<td ng-repeat="col in table.head" ng-if="col.code != 'id'" ng-dblclick="openAgreementByDblClick($event)">{{row[col.code].value}}</td>
+			</tr>
+		  </table>
+	</div>
+  </div>

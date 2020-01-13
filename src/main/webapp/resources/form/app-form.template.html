@@ -1,0 +1,211 @@
+<div layout="column" layout-fill style="padding-left: 15px; padding-top: 15px;">
+<form>
+	<fieldset>
+		<legend>Расчёт</legend>
+		<table style="width: 100%;">
+			<tr>
+				<td>
+					<table style="width: 100%;">
+						<tr>
+							<td style="width: 31%;">
+								<label ng-class="data.insuranceAmount.required ? 'required' : ''" for="insuranceAmount">{{data.insuranceAmount.view}}</label>
+								<input ng-class="data.insuranceAmount.isValid == null || data.insuranceAmount.isValid ? '' : 'invalid'" ng-required = "data.insuranceAmount.required" ng-readonly = "!data.insuranceAmount.editable" name="insuranceAmount" type="text" ng-model="data.insuranceAmount.value" />
+							</td>
+							<td>
+								<label ng-class="data.limitDateStart.required ? 'required' : ''" for="limitDateStart">{{data.limitDateStart.view}}</label>
+								<input ng-class="data.limitDateStart.isValid == null || data.limitDateStart.isValid ? '' : 'invalid'" ng-required = "data.limitDateStart.required" ng-readonly = "!data.limitDateStart.editable" required name="limitDateStart" type="{{data.limitDateStart.type}}" ng-model="data.limitDateStart.value" />
+								<label ng-class="data.limitDateEnd.required ? 'required' : ''" for="limitDateEnd">{{data.limitDateEnd.view}}</label>
+								<input ng-class="data.limitDateEnd.isValid == null || data.limitDateEnd.isValid ? '' : 'invalid'" ng-required = "data.limitDateEnd.required" ng-readonly = "!data.limitDateEnd.editable" required name="limitDateEnd" type="{{data.limitDateEnd.type}}" ng-model="data.limitDateEnd.value" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label ng-class="data.typeOfProperty.required ? 'required' : ''" for="typeOfProperty">{{data.typeOfProperty.view}}</label>
+								<select ng-class="data.typeOfProperty.isValid == null || data.typeOfProperty.isValid ? '' : 'invalid'" name="typeOfProperty" ng-model="data.typeOfProperty.value">
+									<option ng-repeat="option in data.typeOfProperty.options" value="{{option}}">{{option}}</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td style="width: 41%;">
+								<label ng-class="data.yearOfConstruction.required ? 'required' : ''" for="yearOfConstruction">{{data.yearOfConstruction.view}}</label>
+								<select ng-class="data.yearOfConstruction.isValid == null || data.yearOfConstruction.isValid ? '' : 'invalid'" name="yearOfConstruction" ng-model="data.yearOfConstruction.value">
+									<option ng-repeat="option in data.yearOfConstruction.options" value="{{option}}">{{option}}</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label ng-class="data.area.required ? 'required' : ''" for="area" >{{data.area.view}}</label>
+								<input ng-class="data.area.isValid == null || data.area.isValid ? '' : 'invalid'" ng-required = "data.area.required" ng-readonly = "!data.area.editable" required name="area" type="{{data.area.type}}" ng-model="data.area.value" />
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<md-button style="margin-left: 30%" class="md-raised menubar-button" ng-click="calc()">
+						Рассчитать
+					</md-button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table style="width: 90%;">
+						<tr>
+							<td>
+								<label ng-class="data.settlementDate.required ? 'required' : ''" for="settlementDate">{{data.settlementDate.view}}</label>
+								<input ng-class="data.settlementDate.isValid == null || data.settlementDate.isValid ? '' : 'invalid'" ng-required = "data.settlementDate.required" ng-readonly = "!data.settlementDate.editable" required name="settlementDate" type="{{data.settlementDate.type}}" ng-model="data.settlementDate.value" />
+							</td>
+							<td>
+								<label ng-class="data.premium.required ? 'required' : ''" for="premium">{{data.premium.view}}</label>
+								<input ng-class="data.premium.isValid == null || data.premium.isValid ? '' : 'invalid'" ng-required = "data.premium.required" ng-readonly = "!data.premium.editable" required name="premium" type="{{data.premium.type}}" ng-model="data.premium.value" />
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+	<br>
+	<table>
+		<tr>
+			<td>
+				<label ng-class="data.agreementNumber.required ? 'required' : ''" for="agreementNumber">{{data.agreementNumber.view}}</label>
+				<input ng-class="data.agreementNumber.isValid == null || data.agreementNumber.isValid ? '' : 'invalid'" ng-required = "data.agreementNumber.required" ng-readonly = "!data.agreementNumber.editable" required name="agreementNumber" type="{{data.agreementNumber.type}}" ng-model="data.agreementNumber.value" />
+			</td>
+			<td>
+				<label ng-class="data.concludeDate.required ? 'required' : ''" for="concludeDate">{{data.concludeDate.view}}</label>
+				<input ng-class="data.concludeDate.isValid == null || data.concludeDate.isValid ? '' : 'invalid'" ng-required = "data.concludeDate.required" ng-readonly = "!data.concludeDate.editable" required name="concludeDate" type="{{data.concludeDate.type}}" ng-model="data.concludeDate.value" />
+			</td>
+		</tr>
+	</table>
+	<h3>СТРАХОВАТЕЛЬ</h3>
+	<table>
+		<tr>
+			<td>
+				<md-button class="md-raised menubar-button" style="margin-left: 0px;padding-left: 0px;" ng-click="selectClient($event)">
+					Выбрать
+				</md-button>
+			</td>
+			<td>
+				<label ng-class="data.client.required ? 'required' : ''" for="client">ФИО</label>
+			</td>
+			<td colspan="7" width="100%">
+				<input ng-class="data.client.isValid == null || data.client.isValid ? '' : 'invalid'" ng-required = "data.client.required" ng-readonly = "true" style="width: 100%;" name="client" type="text" ng-model="clientFullName" />
+			</td>
+			<td>
+				<md-button style="margin-left:5px;" class="md-raised menubar-button" ng-if="data.client && data.client.value && data.client.value.id && data.client.value.id.value != '' && data.client.value.id.value != '0'" ng-click="editClient($event)">
+					Изменить
+				</md-button>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<label ng-class="data.clientBirthday.required ? 'required' : ''" for="clientBirthday">{{data.clientBirthday.view}}</label>
+			</td>
+			<td>
+				<input ng-class="data.clientBirthday.isValid == null || data.clientBirthday.isValid ? '' : 'invalid'" ng-required = "data.clientBirthday.required" ng-readonly = "!data.clientBirthday.editable" required name="clientBirthday" type="{{data.clientBirthday.type}}" ng-model="data.clientBirthday.value" />
+			</td>
+			<td>
+				Паспорт
+			</td>
+			<td>
+				<label ng-class="data.clientPassportSerial.required ? 'required' : ''" for="clientPassportSerial">{{data.clientPassportSerial.view}}</label>
+			</td>
+			<td>
+				<input ng-class="data.clientPassportSerial.isValid == null || data.clientPassportSerial.isValid ? '' : 'invalid'" ng-required = "data.clientPassportSerial.required" ng-readonly = "!data.clientPassportSerial.editable" required name="clientPassportSerial" type="{{data.clientPassportSerial.type}}" ng-model="data.clientPassportSerial.value" />
+			</td>
+			<td>
+				<label ng-class="data.clientPassportNumber.required ? 'required' : ''" for="clientPassportNumber">{{data.clientPassportNumber.view}}</label>
+			</td>
+			<td>
+				<input ng-class="data.clientPassportNumber.isValid == null || data.clientPassportNumber.isValid ? '' : 'invalid'" ng-required = "data.clientPassportNumber.required" ng-readonly = "!data.clientPassportNumber.editable" required name="clientPassportNumber" type="{{data.clientPassportNumber.type}}" ng-model="data.clientPassportNumber.value" />
+			</td>
+		</tr>
+	</table>
+	<h3>Адрес недвижимости</h3>
+	<table class="table-sup">
+		<tr>
+			<td style="width: 20% !important;">
+				<input ng-class="data.addressState.isValid == null || data.addressState.isValid ? '' : 'invalid'" ng-required = "data.addressState.required" ng-readonly = "!data.addressState.editable" required name="addressState" type="{{data.addressState.type}}" ng-model="data.addressState.value" />
+				<br>
+				<sup style="color: blue;"><label ng-class="data.addressState.required ? 'required' : ''" for="addressState">{{data.addressState.view}}</label></sup>
+			</td>
+			<td style="width: 10% !important;">
+				<input ng-class="data.addressIndex.isValid == null || data.addressIndex.isValid ? '' : 'invalid'" ng-required = "data.addressIndex.required" ng-readonly = "!data.addressIndex.editable" name="addressIndex" type="{{data.addressIndex.type}}" ng-model="data.addressIndex.value" />
+				<br>
+				<sup style="color: blue;"><label  ng-class="data.addressIndex.required ? 'required' : ''" for="addressIndex">{{data.addressIndex.view}}</label></sup>
+			</td>
+			<td>
+				<input ng-class="data.addressConcrete.isValid == null || data.addressConcrete.isValid ? '' : 'invalid'" ng-required = "data.addressConcrete.required" ng-readonly = "!data.addressConcrete.editable" required name="addressConcrete" type="{{data.addressConcrete.type}}" ng-model="data.addressConcrete.value" />
+				<br>
+				<sup style="color: blue; width: 100%"><label ng-class="data.addressConcrete.required ? 'required' : ''" for="addressConcrete">{{data.addressConcrete.view}}</label></sup>
+			</td>
+			<td style="text-align: center;" width: 100% colspan="4">
+				<input ng-class="data.addressArea.isValid == null || data.addressArea.isValid ? '' : 'invalid'" ng-required = "data.addressArea.required" ng-readonly = "!data.addressArea.editable" name="addressArea" type="{{data.addressArea.type}}" ng-model="data.addressArea.value" />
+				<br>
+				<sup style="color: blue;"><label ng-class="data.addressArea.required ? 'required' : ''" for="addressArea">{{data.addressArea.view}}</label></sup>
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 20% !important;">
+				<input ng-class="data.addressLocality.isValid == null || data.addressLocality.isValid ? '' : 'invalid'" ng-required = "data.addressLocality.required" ng-readonly = "!data.addressLocality.editable" required name="addressLocality" type="{{data.addressLocality.type}}" ng-model="data.addressLocality.value" />
+				<br>
+				<sup style="color: blue;"><label ng-class="data.addressLocality.required ? 'required' : ''" for="addressLocality">{{data.addressLocality.view}}</label></sup>
+			</td>
+			<td colspan="2">
+				<input ng-class="data.addressStreet.isValid == null || data.addressStreet.isValid ? '' : 'invalid'" ng-required = "data.addressStreet.required" ng-readonly = "!data.addressStreet.editable" required name="addressStreet" type="{{data.addressStreet.type}}" ng-model="data.addressStreet.value" />
+				<br>
+				<sup style="color: blue;"><label  ng-class="data.addressStreet.required ? 'required' : ''" for="addressStreet">{{data.addressStreet.view}}</label></sup>
+			</td>
+			<td>
+				<input ng-class="data.houseNumber.isValid == null || data.houseNumber.isValid ? '' : 'invalid'" ng-required = "data.houseNumber.required" ng-readonly = "!data.houseNumber.editable" name="houseNumber" type="text" ng-model="data.houseNumber.value" />
+				<br>
+				<sup style="color: blue;"><label ng-class="data.houseNumber.required ? 'required' : ''" for="houseNumber">{{data.houseNumber.view}}</label></sup>
+			</td>
+			<td>
+				<input ng-class="data.houseCorps.isValid == null || data.houseCorps.isValid ? '' : 'invalid'" ng-required = "data.houseCorps.required" ng-readonly = "!data.houseCorps.editable" name="houseCorps" type="text" ng-model="data.houseCorps.value" />
+				<br>
+				<sup style="color: blue;"><label ng-class="data.houseCorps.required ? 'required' : ''" for="houseCorps">{{data.houseCorps.view}}</label></sup>
+			</td>
+			<td>
+				<input ng-class="data.building.isValid == null || data.building.isValid ? '' : 'invalid'" ng-required = "data.building.required" ng-readonly = "!data.building.editable" name="building" type="{{data.building.type}}" ng-model="data.building.value" />
+				<br>
+				<sup style="color: blue;"><label ng-class="data.building.required ? 'required' : ''" for="building">{{data.building.view}}</label></sup>
+			</td>
+			<td>
+				<input ng-class="data.door.isValid == null || data.door.isValid ? '' : 'invalid'" ng-required = "data.door.required" ng-readonly = "!data.door.editable" required name="door" type="text" ng-model="data.door.value" />
+				<br>
+				<sup style="color: blue;"><label ng-class="data.door.required ? 'required' : ''" for="door">{{data.door.view}}</label></sup>
+			</td>
+		</tr>
+	</table>
+	<h3>КОММЕНТАРИЙ</h3>
+	<table>
+		<tr>
+			<td style="width:10%">
+				<label ng-class="data.comment.required ? 'required' : ''" for="comment"><h3 style="font-weight: 100; margin-top: 0px; margin-bottom: 0px;">{{data.comment.view}}</h4></label>
+			</td>
+			<td>
+				<textarea ng-class="data.comment.isValid == null || data.comment.isValid ? '' : 'invalid'" name="comment" style="width:99%" rows="5" ng-model="data.comment.value"></textarea>
+			</td>
+		</tr>
+	</table>
+	<table style="width: 100%">
+		<tr>
+			<td>
+				<md-button style="float: right" class="md-raised menubar-button" ng-click="save()">
+					Сохранить
+				</md-button>
+			</td>
+			<td>
+				<md-button class="md-raised menubar-button" style="margin-left:5px;" ng-click="changeComponent('app-view')">
+					К списку договоров
+				</md-button>
+			</td>
+		</tr>
+	</table>
+</form>
+</div>

@@ -1,0 +1,72 @@
+<md-dialog>
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Клиент</h2>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <table class="table-sup">
+          <tr>
+            <td style="width: auto; text-align: left; min-width: 0px;">
+              ФИО
+              <br>
+              <sup style="visibility: hidden;">.</sup>
+            </td>
+            <td style="width: 33% !important;">
+              <input ng-class="data.lName.isValid == null || data.lName.isValid ? '' : 'invalid'" name="lName" type="{{data.lName.type}}" ng-model="data.lName.value" />
+              <br>
+              <sup style="color: blue;"><label ng-class="data.lName.required ? 'required' : ''" for="lName">({{data.lName.view}})</label></sup>
+            </td>
+            <td style="width: 33% !important;">
+              <input ng-class="data.fName.isValid == null || data.fName.isValid ? '' : 'invalid'" name="fName" type="{{data.fName.type}}" ng-model="data.fName.value" />
+              <br>
+              <sup style="color: blue;"><label ng-class="data.fName.required ? 'required' : ''" for="fName">({{data.fName.view}})</label></sup>
+            </td>
+            <td>
+              <input ng-class="data.pName.isValid == null || data.pName.isValid ? '' : 'invalid'" name="pName" type="{{data.pName.type}}" ng-model="data.pName.value" />
+              <br>
+              <sup style="color: blue;"><label ng-class="data.pName.required ? 'required' : ''" for="pName">({{data.pName.view}})</label></sup>
+            </td>
+          </tr>
+        </table>
+        <table class="table-sup">
+          <tr>
+            <td style="width: auto; text-align: left;">
+              <label ng-class="data.birthday.required ? 'required' : ''" for="birthday">{{data.birthday.view}}</label>
+            </td>
+            <td style="text-align: left;">
+              <input ng-class="data.birthday.isValid == null || data.birthday.isValid ? '' : 'invalid'" style="width: auto;" name="birthday" type="{{data.birthday.type}}" ng-model="data.birthday.value" />
+            </td>
+          </tr>
+          <tr>
+            <td style="width: auto; text-align: left;">
+              Паспорт
+              <label ng-class="data.passportSerial.required ? 'required' : ''" for="passportSerial">{{data.passportSerial.view}}</label>
+            </td>
+            <td style="width: auto; text-align: left;">
+              <input ng-class="data.passportSerial.isValid == null || data.passportSerial.isValid ? '' : 'invalid'" style="width: auto;" name="passportSerial" type="{{data.passportSerial.type}}" ng-model="data.passportSerial.value" />
+            </td>
+            <td style="width: auto; text-align: left;">
+              <label ng-class="data.passportNumber.required ? 'required' : ''" for="passportNumber">{{data.passportNumber.view}}</label>
+              <input ng-class="data.passportNumber.isValid == null || data.passportNumber.isValid ? '' : 'invalid'" style="width: auto;" name="passportNumber" type="{{data.passportNumber.type}}" ng-model="data.passportNumber.value" />
+            </td>
+          </tr>
+        </table>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <div style="width:100%;"></div>
+      <md-button style="min-width: fit-content;" ng-click="save()">
+        Сохранить
+      </md-button>
+      <md-button ng-click="cancel()">
+        Отменить
+      </md-button>
+      <div style="width:100%;"></div>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<viewContainer>
+	<views>
+		<view key="agreements">
+			<columnContainer>
+				<columns>
+					<column>
+						<code>id</code>
+						<title>Идентификатор договора</title>
+						<script><![CDATA[let a = {id}; return a.toString();]]></script>
+					</column>
+					<column>
+						<code>agreementNumber</code>
+						<title>Номер договора</title>
+						<script><![CDATA[let a = "{agreementNumber}";
+									let r = a;
+									for (let i = a.toString().length; i < 6; i++){
+										r = "0" + r;
+									};
+									return r;]]></script>
+					</column>
+					<column>
+						<code>concludeDate</code>
+						<title>Дата заключения</title>
+						<script><![CDATA[let dateStringToViewFormat = function(dateString){
+										let date = new Date(dateString);
+										let day = date.getDate() + "";
+										if (day.length < 2) day = "0" + day;
+										let month = (date.getMonth() + 1) + "";
+										if (month.length < 2) month = "0" + month;
+										let year = date.getFullYear();
+										return (day + '.' + month + '.' + year);
+									};
+									let a = "{concludeDate}"; return dateStringToViewFormat(a);]]></script>
+					</column>
+					<column>
+						<code>client</code>
+						<title>Страхователь</title>
+						<script><![CDATA[let a = "{client.lName}" + " " + "{client.fName}" + " " + "{client.pName}";
+									return a;]]></script>
+					</column>
+					<column>
+						<code>premium</code>
+						<title>Премия</title>
+						<script><![CDATA[let a = {premium}; return parseFloat(a).toFixed(2).toString().replace(".", ",");]]></script>
+					</column>
+					<column>
+						<code>limitDate</code>
+						<title>Срок действия</title>
+						<script><![CDATA[let dateStringToViewFormat = function(dateString){
+										let date = new Date(dateString);
+										let day = date.getDate() + "";
+										if (day.length < 2) day = "0" + day;
+										let month = (date.getMonth() + 1) + "";
+										if (month.length < 2) month = "0" + month;
+										let year = date.getFullYear();
+										return (day + '.' + month + '.' + year);
+									};
+									let a = "{limitDateStart}";
+									let b = "{limitDateEnd}";
+									return dateStringToViewFormat(a) + "-" + dateStringToViewFormat(b);]]></script>
+					</column>
+				</columns>
+			</columnContainer>
+		</view>
+		<view key="clients">
+			<columnContainer>
+				<columns>
+					<column>
+						<code>id</code>
+						<title>Идентификатор клиента</title>
+						<script><![CDATA[let a = {id}; return a.toString();]]></script>
+					</column>
+					<column>
+						<code>client</code>
+						<title>ФИО</title>
+						<script><![CDATA[let a = "{lName}" + " " + "{fName}" + " " + "{pName}"; return a;]]></script>
+					</column>
+					<column>
+						<code>birthday</code>
+						<title>Дата рождения</title>
+						<script><![CDATA[let dateStringToViewFormat = function(dateString){
+										let date = new Date(dateString);
+										let day = date.getDate() + "";
+										if (day.length < 2) day = "0" + day;
+										let month = (date.getMonth() + 1) + "";
+										if (month.length < 2) month = "0" + month;
+										let year = date.getFullYear();
+										return (day + '.' + month + '.' + year);
+									};
+									let a = "{birthday}"; return dateStringToViewFormat(a);]]></script>
+					</column>
+					<column>
+						<code>passport</code>
+						<title>Паспортные данные</title>
+						<script><![CDATA[let a = "{passportSerial}"; let b = "{passportNumber}";
+									let aa = (a == 0 ? "" : a);
+									let bb = (b == 0 ? "" : b);
+									return aa + " " + bb;]]></script>
+					</column>
+				</columns>
+			</columnContainer>
+		</view>
+	</views>
+</viewContainer>

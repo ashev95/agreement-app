@@ -1,0 +1,47 @@
+.table {
+	background-color: #d4d4d4;
+	border-spacing: 1px;
+}
+.table tr {
+	padding: 5px;
+}
+.table-tr-head {
+	background-color: #f1f1f1;
+}
+.table-tr-data {
+	background-color: #ffffff;
+}
+.table-tr-data:hover {
+	background-color: #d5eaee;
+	cursor: pointer;
+}
+.table-tr-data-selected {
+	background-color: #b4ddff;
+	cursor: pointer;
+}
+.table td {
+	padding: 5px;
+	text-align: center;
+}
+.menubar-button {
+	line-height: 27px;
+	min-height: 27px;
+	text-transform: none;
+}
+.table-sup td {
+	text-align: center; 
+	white-space: nowrap;
+	padding-right: 5px;
+	min-width: 70px;
+	width: 100%;
+}
+.table-sup td input {
+	width: 100%;
+}
+.invalid {
+	background-color: #ffcdcd;
+}
+.required {
+	text-decoration: underline;
+	text-decoration-color: red;
+}

@@ -1,0 +1,74 @@
+<md-dialog>
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Выбор клиентов</h2>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <table class="table-sup">
+          <tr>
+            <td style="width: auto;">
+              ФИО
+              <br>
+              <sup style="visibility: hidden;">.</sup>
+            </td>
+            <td style="width: 33% !important;">
+              <input name="lName" type="text" ng-model="lName" />
+              <br>
+              <sup style="color: blue;"><label for="lName">(фамилия)</label></sup>
+            </td>
+            <td style="width: 33% !important;">
+              <input name="fName" type="text" ng-model="fName" />
+              <br>
+              <sup style="color: blue;"><label for="fName">(имя)</label></sup>
+            </td>
+            <td>
+              <input name="pName" type="text" ng-model="pName" />
+              <br>
+              <sup style="color: blue;"><label for="pName">(отчество)</label></sup>
+            </td>
+            <td>
+              <md-button style="min-height: 0px; min-width: 0px; margin: 0px; padding: 0px; line-height: 0px;" ng-click="search()">
+                <img src="resources/img/search.png">
+              </md-button>
+              <br>
+              <sup style="visibility: hidden;">.</sup>
+            </td>
+          </tr>
+        </table>
+        <div ng-switch="showList">
+          <div ng-switch-when="true">
+            <table class="table" style="width: 100%;">
+              <tr class="table-tr-head">
+                <td ng-repeat="col in table.head" ng-if="col.code != 'id'">
+                  {{col.title}}
+                </td>
+              </tr>
+              <tr id="row{{$index}}" class="table-tr-data" ng-repeat="row in table.data" ng-click="selectRow($index)">
+                <td ng-repeat="col in table.head" ng-if="col.code != 'id'">{{row[col.code].value}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+          <div style="text-align: center; margin-top: 10px;" ng-if="searchIsEmpty">Нет подходящих записей</div>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <div style="width:100%;"></div>
+      <md-button ng-click="select()">
+       Выбрать
+      </md-button>
+      <md-button ng-click="create()">
+        Новый
+      </md-button>
+      <md-button ng-click="cancel()">
+        Закрыть
+      </md-button>
+      <div style="width:100%;"></div>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

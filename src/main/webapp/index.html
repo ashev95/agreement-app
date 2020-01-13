@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="resources/css/angular-material.min.css">
+
+	<link rel="stylesheet" href="resources/css/app.css">
+
+	<script src="resources/js/angular.min.js"></script>
+	<script src="resources/js/angular-animate.min.js"></script>
+	<script src="resources/js/angular-aria.min.js"></script>
+	<script src="resources/js/angular-messages.min.js"></script>
+	<script src="resources/js/angular-material.min.js"></script>
+	<script src="resources/js/angular-route.min.js"></script>
+
+	<!--
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-messages.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-route.min.js"></script>
+	-->
+
+	<script src="resources/app.module.js"></script>
+	<script src="resources/view/app-view.component.js"></script>
+	<script src="resources/form/app-form.component.js"></script>
+
+</head>
+
+<body ng-controller="AppController">
+<div ng-switch="activeComponent">
+	<app-view ng-switch-when="app-view"></app-view>
+	<app-form ng-switch-when="app-form"></app-form>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<formValidatorContainer>
+	<forms>
+		<form key="agreement">
+			<groupValidators attribute="insuranceAmount" required="true">
+				<validators>
+					<validator type="javascript">
+						<script><![CDATA[let a = "{insuranceAmount}"; return !isNaN(parseFloat(a));]]></script>
+						<message>Страховая сумма должна быть числом</message>
+					</validator>
+					<validator type="javascript">
+						<script><![CDATA[let a = "{insuranceAmount}"; let numA = parseFloat(a); return (numA > 0);]]></script>
+						<message>Страховая сумма должна быть больше нуля</message>
+					</validator>
+					<validator type="javascript">
+						<script><![CDATA[let a = "{insuranceAmount}"; let numA = parseFloat(a); return (numA <= 9223372036854775807);]]></script>
+						<message>Страховая сумма должна быть меньше 9223372036854775807</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="limitDateStart" required="true">
+				<validators>
+					<validator type="javascript">
+						<script><![CDATA[let a = "{limitDateStart}"; return !isNaN(Date.parse(a));]]></script>
+						<message>Начало срока действия полиса должно быть датой</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="limitDateEnd" required="true">
+				<validators>
+					<validator type="javascript">
+						<script><![CDATA[let a = "{limitDateEnd}"; return !isNaN(Date.parse(a));]]></script>
+						<message>Окончание срока действия полиса должно быть датой</message>
+					</validator>
+					<validator type="javascript">
+						<script><![CDATA[let a = "{limitDateStart}";
+							let b = "{limitDateEnd}";
+							let startDate = new Date(a);
+							let endDate = new Date(b);
+							return (endDate.getTime() > startDate.getTime());]]></script>
+						<message>Окончание срока действия полиса должно быть больше начала</message>
+					</validator>
+					<validator type="javascript">
+						<script><![CDATA[let a = "{limitDateStart}";
+							let b = "{limitDateEnd}";
+							let startDate = new Date(a);
+							let endDate = new Date(b);
+							let days = 365;
+							let year = startDate.getFullYear();
+							if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)){
+								days = 366;
+							}
+							let difMs = endDate.getTime() - startDate.getTime();
+							let difDays = difMs / (1000 * 3600 * 24);
+							return (difDays <= days);]]></script>
+						<message>Срок действия договора не может быть больше года</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="typeOfProperty" required="true">
+				<validators>
+					<validator type="selection">
+						<message>Тип недвижимости не соответствует ни одному из допустимых значений</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="yearOfConstruction" required="true">
+				<validators>
+					<validator type="selection">
+						<message>Год постройки</message>
+					</validator>
+					<validator type="regexp">
+						<expression><![CDATA[^\d{4}$]]></expression>
+						<message>Год должен состоять из четырёх цифр</message>
+					</validator>
+					<validator type="javascript">
+						<script><![CDATA[let a = "{yearOfConstruction}";
+							let dateA = new Date(a);
+							let dateB = new Date();
+							return (dateA.getFullYear() <= dateB.getFullYear());]]></script>
+						<message>Год постройки не может быть больше текущего года</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="area" required="true">
+				<validators>
+					<validator type="javascript">
+						<script><![CDATA[
+									let a = "{area}";
+									return !isNaN(parseFloat(a));
+									]]></script>
+						<message>Площадь должна быть числом</message>
+					</validator>
+					<validator type="regexp">
+						<expression><![CDATA[(^\d+$)|(\d+\.\d{1}$)]]></expression>
+						<message>Площадь не может содержать более одного знака после точки</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="settlementDate" required="true">
+				<validators>
+					<validator type="javascript">
+						<script><![CDATA[let a = "{settlementDate}"; return !isNaN(Date.parse(a));]]></script>
+						<message>Дата расчета не является датой</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="premium" required="true">
+				<validators>
+					<validator type="javascript">
+						<script><![CDATA[let a = "{premium}"; return !isNaN(parseFloat(a));]]></script>
+						<message>Премия должна быть числом</message>
+					</validator>
+					<validator type="javascript">
+						<script><![CDATA[let a = "{premium}"; let numA = parseFloat(a); return (numA > 0);]]></script>
+						<message>Премия не может быть меньше нуля</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="agreementNumber" required="true">
+				<validators>
+					<validator type="javascript">
+						<script><![CDATA[let a = "{agreementNumber}"; return !isNaN(parseInt(a));]]></script>
+						<message>Номер договора должен быть целым числом</message>
+					</validator>
+					<validator type="javascript">
+						<script><![CDATA[let a = "{agreementNumber}"; let numA = parseInt(a); return (numA > 0);]]></script>
+						<message>Номер договора должен быть больше нуля</message>
+					</validator>
+					<validator type="javascript">
+						<script><![CDATA[let a = "{agreementNumber}"; let numA = parseInt(a); return (numA.toString().length <= 6);]]></script>
+						<message>Номер договора должен состоять из 6 цифр</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="concludeDate" required="true">
+				<validators>
+					<validator type="javascript">
+						<script><![CDATA[let a = "{concludeDate}"; return !isNaN(Date.parse(a));]]></script>
+						<message>Дата заключения не является датой</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="client" required="true">
+				<validators>
+					<validator type="javascript">
+						<script><![CDATA[let a = "{client.value.id.value}"; let numA = parseInt(a); return (numA > 0);]]></script>
+						<message>Необходимо выбрать страхователя</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="clientBirthday" required="true">
+			</groupValidators>
+			<groupValidators attribute="clientPassportSerial" required="true">
+				<validators>
+					<validator type="regexp">
+						<expression><![CDATA[^\d{4}$]]></expression>
+						<message>Серия должна состоять из 4 цифр</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="clientPassportNumber" required="true">
+				<validators>
+					<validator type="regexp">
+						<expression><![CDATA[^\d{6}$]]></expression>
+						<message>Номер должен состоять из 6 цифр</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="addressState" required="true">
+				<validators>
+					<validator type="regexp">
+						<expression><![CDATA[^.{0,255}]]></expression>
+						<message>Государство не должно превышать 255 символов</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="addressIndex">
+				<validators>
+					<validator type="regexp">
+						<expression><![CDATA[^.{0,255}]]></expression>
+						<message>Индекс не должен превышать 255 символов</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="addressConcrete" required="true">
+				<validators>
+					<validator type="regexp">
+						<expression><![CDATA[^.{0,255}]]></expression>
+						<message>Поле "республика, край, область" не должно превышать 255 символов</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="addressArea">
+				<validators>
+					<validator type="regexp">
+						<expression><![CDATA[^.{0,255}]]></expression>
+						<message>Район не должен превышать 255 символов</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="addressLocality" required="true">
+				<validators>
+					<validator type="regexp">
+						<expression><![CDATA[^.{0,255}]]></expression>
+						<message>Населённый пункт не должен превышать 255 символов</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="addressStreet" required="true">
+				<validators>
+					<validator type="regexp">
+						<expression><![CDATA[^.{0,255}]]></expression>
+						<message>Улица не должна содержать более 255 символов</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="houseNumber">
+				<validators>
+					<validator type="javascript">
+						<script><![CDATA[let a = "{houseNumber}"; return a.toString().indexOf(".") < 0;]]></script>
+						<message>Дом должен быть целым числом</message>
+					</validator>
+					<validator type="javascript">
+						<script><![CDATA[let a = "{houseNumber}"; return !isNaN(parseInt(a));]]></script>
+						<message>Дом должен быть целым числом</message>
+					</validator>
+					<validator type="javascript">
+						<script><![CDATA[let a = "{houseNumber}"; let numA = parseInt(a); return (numA > 0);]]></script>
+						<message>Дом должен быть больше нуля</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="houseCorps">
+				<validators>
+					<validator type="regexp">
+						<expression><![CDATA[^.{0,255}]]></expression>
+						<message>Корпус не должен превышать 255 символов</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="building">
+				<validators>
+					<validator type="regexp">
+						<expression><![CDATA[^.{0,255}]]></expression>
+						<message>Строение не должно превышать 255 символов</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="door" required="true">
+				<validators>
+					<validator type="javascript">
+						<script><![CDATA[let a = "{door}"; return a.toString().indexOf(".") < 0;]]></script>
+						<message>Квартира должна быть целым числом</message>
+					</validator>
+					<validator type="javascript">
+						<script><![CDATA[let a = "{door}"; return !isNaN(parseInt(a));]]></script>
+						<message>Квартира должна быть целым числом</message>
+					</validator>
+					<validator type="javascript">
+						<script><![CDATA[let a = "{door}"; let numA = parseInt(a); return (numA > 0);]]></script>
+						<message>Квартира должна быть больше нуля</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="comment">
+				<validators>
+					<validator type="regexp">
+						<expression><![CDATA[^.{0,255}]]></expression>
+						<message>Комментарий к договору не должен превышать 255 символов</message>
+					</validator>
+				</validators>
+			</groupValidators>
+		</form>
+		<form key="client">
+			<groupValidators attribute="fName" required="true">
+				<validators>
+					<validator type="regexp">
+						<expression><![CDATA[^[а-яА-Я]{0,255}]]></expression>
+						<message>Имя должно состоять из букв кириллицы и не превышать 255 символов</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="lName" required="true">
+				<validators>
+					<validator type="regexp">
+						<expression><![CDATA[^[а-яА-Я]{0,255}]]></expression>
+						<message>Фамилия не должна содержать более 255 символов</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="pName">
+				<validators>
+					<validator type="regexp">
+						<expression><![CDATA[^[а-яА-Я]{0,255}]]></expression>
+						<message>Отчество должно состоять из букв кириллицы и не превышать 255 символов</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="birthday" required="true">
+			</groupValidators>
+			<groupValidators attribute="passportSerial" required="false">
+				<validators>
+					<validator type="regexp" isMask="true">
+						<expression><![CDATA[^\d{4}$]]></expression>
+						<message>Серия должна состоять из 4 цифр</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="passportNumber" required="false">
+				<validators>
+					<validator type="regexp" isMask="true">
+						<expression><![CDATA[^\d{6}$]]></expression>
+						<message>Номер должен состоять из 6 цифр</message>
+					</validator>
+				</validators>
+			</groupValidators>
+		</form>
+		<form key="client-edit">
+			<groupValidators attribute="fName" required="true">
+				<validators>
+					<validator type="regexp">
+						<expression><![CDATA[^[а-яА-Я]{0,255}]]></expression>
+						<message>Имя должно состоять из букв кириллицы и не превышать 255 символов</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="lName" required="true">
+				<validators>
+					<validator type="regexp">
+						<expression><![CDATA[^[а-яА-Я]{0,255}]]></expression>
+						<message>Фамилия не должна содержать более 255 символов</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="pName">
+				<validators>
+					<validator type="regexp">
+						<expression><![CDATA[^[а-яА-Я]{0,255}]]></expression>
+						<message>Отчество должно состоять из букв кириллицы и не превышать 255 символов</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="birthday" required="true">
+			</groupValidators>
+			<groupValidators attribute="passportSerial" required="true">
+				<validators>
+					<validator type="regexp" isMask="true">
+						<expression><![CDATA[^\d{4}$]]></expression>
+						<message>Серия должна состоять из 4 цифр</message>
+					</validator>
+				</validators>
+			</groupValidators>
+			<groupValidators attribute="passportNumber" required="true">
+				<validators>
+					<validator type="regexp" isMask="true">
+						<expression><![CDATA[^\d{6}$]]></expression>
+						<message>Номер должен состоять из 6 цифр</message>
+					</validator>
+				</validators>
+			</groupValidators>
+		</form>
+	</forms>
+</formValidatorContainer>

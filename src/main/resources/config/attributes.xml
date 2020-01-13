@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<formContainer>
+	<forms>
+		<form key="agreement">
+			<attributeContainer>
+				<attributes>
+					<attribute>
+						<code>id</code>
+						<title>Идентификатор договора</title>
+						<view>Идентификатор</view>
+						<type>id</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>insuranceAmount</code>
+						<title>Страховая сумма</title>
+						<view>Страховая сумма</view>
+						<type>number</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute class="SelectAttribute">
+						<code>typeOfProperty</code>
+						<title>Тип недвижимости</title>
+						<view>Тип недвижимости</view>
+						<type>select</type>
+						<options>
+							<option>Квартира</option>
+							<option>Дом</option>
+							<option>Комната</option>
+						</options>
+						<editable>true</editable>
+					</attribute>
+					<attribute class="SelectAttribute">
+						<code>yearOfConstruction</code>
+						<title>Год постройки</title>
+						<view>Год постройки</view>
+						<type>select</type>
+						<options>
+							<option>2020</option>
+							<option>2019</option>
+							<option>2018</option>
+							<option>2017</option>
+							<option>2016</option>
+							<option>2015</option>
+							<option>2014</option>
+							<option>2013</option>
+						</options>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>area</code>
+						<title>Площадь</title>
+						<view>Площадь, кв.м.</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>limitDateStart</code>
+						<title>Дата начала срока действия договора</title>
+						<view>Срок действия с</view>
+						<type>date</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>limitDateEnd</code>
+						<title>Дата окончания срока действия договора</title>
+						<view>по</view>
+						<type>date</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>settlementDate</code>
+						<title>Дата расчёта</title>
+						<view>Дата расчёта</view>
+						<type>date</type>
+						<editable>false</editable>
+					</attribute>
+					<attribute>
+						<code>premium</code>
+						<title>Премия</title>
+						<view>Премия</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>agreementNumber</code>
+						<title>Номер договора</title>
+						<view>№ договора</view>
+						<type>number</type>
+						<editable>true</editable>
+						<script><![CDATA[let a = "{agreementNumber}";
+									let r = a;
+									for (let i = a.toString().length; i < 6; i++){
+										r = "0" + r;
+									};
+									return r;]]></script>
+					</attribute>
+					<attribute>
+						<code>concludeDate</code>
+						<title>Дата заключения</title>
+						<view>Дата заключения</view>
+						<type>date</type>
+						<editable>false</editable>
+					</attribute>
+					<attribute>
+						<code>client</code>
+						<title>Страхователь</title>
+						<view>ФИО</view>
+						<type>client</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>clientBirthday</code>
+						<title>Дата рождения клиента</title>
+						<view>Дата рождения</view>
+						<type>date</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>clientPassportSerial</code>
+						<title>Серия паспорта клиента</title>
+						<view>серия</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>clientPassportNumber</code>
+						<title>Номер паспорта клиента</title>
+						<view>№</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>addressState</code>
+						<title>государство</title>
+						<view>государство</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>addressIndex</code>
+						<title>Индекс</title>
+						<view>индекс</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>addressConcrete</code>
+						<title>республика, край, область</title>
+						<view>республика, край, область</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>addressArea</code>
+						<title>район</title>
+						<view>район</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>addressLocality</code>
+						<title>населённый пункт</title>
+						<view>населённый пункт</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>addressStreet</code>
+						<title>улица</title>
+						<view>улица</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>houseNumber</code>
+						<title>дом</title>
+						<view>дом</view>
+						<type>number</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>houseCorps</code>
+						<title>корпус</title>
+						<view>корпус</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>building</code>
+						<title>строение</title>
+						<view>строение</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>door</code>
+						<title>квартира</title>
+						<view>квартира</view>
+						<type>number</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>comment</code>
+						<title>Комментарий к договору</title>
+						<view>Комментарий к договору (не печатается на полисе)</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+				</attributes>
+			</attributeContainer>
+		</form>
+		<form key="client">
+			<attributeContainer>
+				<attributes>
+					<attribute>
+						<code>id</code>
+						<title>Идентификатор клиента</title>
+						<view>Идентификатор</view>
+						<type>id</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>lName</code>
+						<title>Фамилия</title>
+						<view>фамилия</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>fName</code>
+						<title>Имя</title>
+						<view>имя</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>pName</code>
+						<title>Отчество</title>
+						<view>отчество</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>birthday</code>
+						<title>Дата рождения</title>
+						<view>Дата рождения</view>
+						<type>date</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>passportSerial</code>
+						<title>Серия паспорта</title>
+						<view>Серия паспорта</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>passportNumber</code>
+						<title>Номер паспорта</title>
+						<view>Номер паспорта</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+				</attributes>
+			</attributeContainer>
+		</form>
+		<form key="client-edit">
+			<attributeContainer>
+				<attributes>
+					<attribute>
+						<code>id</code>
+						<title>Идентификатор клиента</title>
+						<view>Идентификатор</view>
+						<type>id</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>lName</code>
+						<title>Фамилия</title>
+						<view>фамилия</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>fName</code>
+						<title>Имя</title>
+						<view>имя</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>pName</code>
+						<title>Отчество</title>
+						<view>отчество</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>birthday</code>
+						<title>Дата рождения</title>
+						<view>Дата рождения</view>
+						<type>date</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>passportSerial</code>
+						<title>Серия паспорта</title>
+						<view>серия</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+					<attribute>
+						<code>passportNumber</code>
+						<title>Номер паспорта</title>
+						<view>№</view>
+						<type>text</type>
+						<editable>true</editable>
+					</attribute>
+				</attributes>
+			</attributeContainer>
+		</form>
+	</forms>
+</formContainer>

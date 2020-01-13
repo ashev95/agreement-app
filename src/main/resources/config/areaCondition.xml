@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<areaCondition>
+    <values>
+        <predicate>{0} &lt; 50</predicate>
+        <value>1.2</value>
+    </values>
+    <values>
+        <predicate>{0} &gt;= 50 &amp;&amp; {0} &lt;= 100</predicate>
+        <value>1.5</value>
+    </values>
+    <values>
+        <predicate>{0} &gt; 100</predicate>
+        <value>2.0</value>
+    </values>
+</areaCondition>

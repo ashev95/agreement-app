@@ -1,0 +1,1 @@
+angular.module('appView', ['ngMaterial', 'ngRoute']);
